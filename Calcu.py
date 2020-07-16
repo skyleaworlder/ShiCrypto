@@ -43,7 +43,7 @@ def Div(a, b, p):
 
 def Sqrt(z, n):
     for i in range(0, ceil((n+1) / 2)):
-        if pow(i, 2, n) == z:
+        if pow(i, 2, n) == (z%n):
             return [i, n - i]
     else:
         return [-1, -1]
