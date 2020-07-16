@@ -1,3 +1,8 @@
+'''
+python ECIES.py [<a>] [<b>] [<p>] [<points-str>]
+    [<m-private key>] [<n-prime>] [<plaintxt-num>]
+eg. python ECIES.py 1 6 11 "(2,7)" 3 5 10
+'''
 import sys
 import random
 from ECC import ECC
@@ -63,10 +68,6 @@ class ECIES:
             self.E.p
         )
 
-'''
-eg. python ECIES.py [<a>] [<b>] [<p>] [<points-str>]
-    [<m-private key>] [<n-prime>] [<plaintxt-num>]
-'''
 def main(argv):
     a,b,p = map(int, (argv[0],argv[1],argv[2]))
     ecc = ECC(a, b, p)
@@ -88,10 +89,3 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-
-'''
-ecc = ECC(1,6,11)
-ecies = ECIES(ecc, (2,7), 3, 5)
-cipher = ecies.encrypt(10)
-print(ecies.decrypt(cipher))
-'''

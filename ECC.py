@@ -1,3 +1,15 @@
+'''
+1. python ECC.py [<a>] [<b>] [<p>] -d
+eg. python ECC.py 1 6 11 -d
+
+2. python ECC.py [<a>] [<b>] [<p>] -a/--add [<point-str>] [<point-str>]
+need input str command param
+eg. python ECC.py 1 6 11 -a "(2,7)" "(2,7)"
+
+3. python ECC.py [<a>] [<b>] [<p>] -m/--mul/--multi [<point-str>] [<times>]
+need input str command param
+eg. python ECC.py 1 6 11 -m "(2,7)" 7
+'''
 import sys
 import numpy as np
 from PrimeTest import Fermat
@@ -111,17 +123,9 @@ def main(argv):
         for index,dot in enumerate(ecc.dots):
             print(index, ":", dot)
     elif argv[3] == "-a" or argv[3] == "--add":
-        '''
-        need input str command param
-        eg. python ECC.py 1 6 11 -m "(2,7)" "(2,7)"
-        '''
         P, Q = tuple(eval(argv[4])), tuple(eval(argv[5]))
         print(P, "+", Q, "=", ecc.add(P, Q))
     elif argv[3] == "-m" or argv[3] == "--mul" or argv[3] == "--multi":
-        '''
-        need input str command param
-        eg. python ECC.py 1 6 11 -m "(2,7)" 7
-        '''
         P = tuple(eval(argv[4]))
         k = int(argv[5])
         print(P, "*", k, "=", ecc.multi(P, k))

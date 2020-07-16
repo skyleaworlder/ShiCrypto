@@ -1,3 +1,8 @@
+'''
+python MultCoef.py [<top-index>] -- [<bot-index-list>]
+eg. python MultCoef.py 64 -- 2 3 4 5 6 7 8 9 10 10
+    python MultCoef.py 12 -- 5 7
+'''
 import sys
 from functools import reduce
 from math import factorial

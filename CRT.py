@@ -1,3 +1,7 @@
+'''
+python CRT.py [<b-list>] -- [<m-list>]
+eg. python CRT.py 1 2 -- 4 5
+'''
 import sys
 from Calcu import Inverse, GCD
 from functools import reduce

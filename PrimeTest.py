@@ -1,12 +1,15 @@
-
 '''
-n is input to be tested
-iterNum
+python PrimeTest.py [<test-num>] [<iter-num>]
+eg. python PrimeTest.py 64 12
 '''
 import sys
 import random
 from Calcu import GCD
 
+'''
+n is input to be tested
+iterNum
+'''
 def Fermat(n_i, iterNum_i=512):
     n = int(n_i)
     if n == 2 or n == 3:

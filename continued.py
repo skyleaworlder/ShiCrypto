@@ -1,3 +1,7 @@
+'''
+python continued.py [<nume>] [<deno>]
+eg. python continued.py 17 45
+'''
 import sys
 from Calcu import GCD
 
