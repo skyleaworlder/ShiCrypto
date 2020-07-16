@@ -1,5 +1,5 @@
 import sys
-from gcd import Inverse, GCD
+from Calcu import Inverse, GCD
 from functools import reduce
 
 def CRT(b_arr, m_arr):

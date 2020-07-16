@@ -5,7 +5,7 @@ iterNum
 '''
 import sys
 import random
-from gcd import GCD
+from Calcu import GCD
 
 def Fermat(n_i, iterNum_i=512):
     n = int(n_i)

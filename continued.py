@@ -1,5 +1,5 @@
 import sys
-from gcd import GCD
+from Calcu import GCD
 
 class continuedFrac:
 
