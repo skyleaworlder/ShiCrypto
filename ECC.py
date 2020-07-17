@@ -6,9 +6,10 @@ eg. python ECC.py 1 6 11 -d
 need input str command param
 eg. python ECC.py 1 6 11 -a "(2,7)" "(2,7)"
 
-3. python ECC.py [<a>] [<b>] [<p>] -m/--mul/--multi [<point-str>] [<times>]
+3. python ECC.py [<a>] [<b>] [<p>] -m/--mul/--multi [<point-str>] [<times>] [<choice>]
 need input str command param
 eg. python ECC.py 1 6 11 -m "(2,7)" 7
+    python ECC.py 1 6 11 -m "(2,7)" 1100 --naf
 '''
 import sys
 import numpy as np
@@ -24,13 +25,18 @@ class ECC:
         self.b = b
         assert Fermat(p)
         self.p = p
+        self.dots = [(inf, inf)]
 
     def _fx(self, x):
         return x**3 + self.a*x + self.b
 
+    def _check_exist(self, P):
+        return (self._fx(P[0]) % self.p == Mul(P[1], P[1], self.p)) or (P == (inf, inf))
+
     def _NAF(self, num):
         num_bit = []
-        for i in range(1, ceil(log2(num))+1):
+        ''' ceil+2 because when num equal 2^i '''
+        for i in range(1, ceil(log2(num))+2):
             num_bit.append(1) if num % (2**i) - num % (2**(i-1)) != 0 else num_bit.append(0)
         num_bit.append(0)
         L = np.array(num_bit)
@@ -54,6 +60,9 @@ class ECC:
                     index[1] += 1
                 L[index[1]] = 1
                 index[0] = index[1]
+        ''' keep msb 1 '''
+        print(L)
+        L = L[:-1] if L[L.shape[0]-1] == 0 else L
         return L
 
     def calcuDots(self):
@@ -74,8 +83,9 @@ class ECC:
         self.dots.append((inf, inf))
 
     def add(self, P, Q):
-        assert P in self.dots and Q in self.dots
+        assert (self._check_exist(P) and self._check_exist(Q))
         '''
+        0. P=O|Q=O: RET P or Q
         1. P+Q=O:   RET (inf, inf)
         2. P=Q:     lambda = dy/dx = (3x_1^2 + a)/2y_1
         3. ELSE:    lambda = delta y / delta x
@@ -107,13 +117,12 @@ class ECC:
 
     '''
     square-multi alg
+    such as 1100000, using 6.2s
     '''
     def multi(self, P, k):
         assert k != 0
         if k == 1:
             return P
-        elif k % (self.dots.__len__()+1) == 0:
-            return (inf, inf)
         elif k % 2 == 0:
             return self.add(self.multi(P, k//2), self.multi(P, k//2))
         else:
@@ -122,14 +131,12 @@ class ECC:
     '''
     using NAF and square-multi ALG
     in order to decrease time complexity
+    such as 1100000, using 1.97s
     '''
     def multi_NAF(self, P, k):
         assert k != 0
         k_bitset = self._NAF(k)
-        print(k_bitset)
-
         res = self.multi(P, pow(2, k_bitset.__len__()-1))
-        print(res, k_bitset.__len__())
         for index,bit in enumerate(k_bitset[:-1]):
             minu_add = self.multi(P, pow(2, index))
             if bit == -1:
@@ -144,9 +151,9 @@ class ECC:
 def main(argv):
     a,b,p = map(int, (argv[0],argv[1],argv[2]))
     ecc = ECC(a, b, p)
-    ecc.calcuDots()
 
     if argv[3] == "-d" or argv[3] == "--dots":
+        ecc.calcuDots()
         print(ecc.dots.__len__(), "dots are:", "( y^2 = x^3 +", ecc.a, "* x +", ecc.b,")")
         for index,dot in enumerate(ecc.dots):
             print(index, ":", dot)
@@ -157,19 +164,11 @@ def main(argv):
         P = tuple(eval(argv[4]))
         k = int(argv[5])
         if argv.__len__() == 7 and argv[6] == "--naf":
-            print(P, "*", k, "=", ecc.multi(P, k), "using NAF")
+            print(P, "*", k, "=", ecc.multi_NAF(P, k), "using NAF")
         else:
             print(P, "*", k, "=", ecc.multi(P, k))
     else:
         pass
-
-'''
-ecc = ECC(1,6,11)
-ecc.calcuDots()
-P = (2, 7)
-for k in range(2, 100):
-    print(P, "*", k, "=", ecc.multi(P, k), "using NAF")
-'''
 
 if __name__ == "__main__":
     main(sys.argv[1:])
