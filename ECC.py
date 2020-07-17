@@ -54,12 +54,13 @@ class ECC:
                     index[1] += 1
                 L[index[1]] = 1
                 index[0] = index[1]
+        return L
 
     def calcuDots(self):
         '''
         y^2 = z = x^3 + a*x^ + b
         '''
-        X = [x for x in range(0, self.p)]
+        X = range(0, self.p)
         Z = [self._fx(x) % self.p for x in X]
         Y = []
         for z in Z:
@@ -70,6 +71,7 @@ class ECC:
             if y != (-1, -1):
                 self.dots.append((x, y[0]))
                 self.dots.append((x, y[1]))
+        self.dots.append((inf, inf))
 
     def add(self, P, Q):
         assert P in self.dots and Q in self.dots
@@ -78,7 +80,9 @@ class ECC:
         2. P=Q:     lambda = dy/dx = (3x_1^2 + a)/2y_1
         3. ELSE:    lambda = delta y / delta x
         '''
-        if P[0] == Q[0] and Add(P[1], Q[1], self.p) == 0:
+        if P == (inf, inf) or Q == (inf, inf):
+            return P if Q == (inf, inf) else Q
+        elif P[0] == Q[0] and Add(P[1], Q[1], self.p) == 0:
             return (inf, inf)
         elif P == Q:
             lamb = Div(
@@ -108,10 +112,34 @@ class ECC:
         assert k != 0
         if k == 1:
             return P
+        elif k % (self.dots.__len__()+1) == 0:
+            return (inf, inf)
         elif k % 2 == 0:
             return self.add(self.multi(P, k//2), self.multi(P, k//2))
         else:
             return self.add(P, self.multi(P, k-1))
+
+    '''
+    using NAF and square-multi ALG
+    in order to decrease time complexity
+    '''
+    def multi_NAF(self, P, k):
+        assert k != 0
+        k_bitset = self._NAF(k)
+        print(k_bitset)
+
+        res = self.multi(P, pow(2, k_bitset.__len__()-1))
+        print(res, k_bitset.__len__())
+        for index,bit in enumerate(k_bitset[:-1]):
+            minu_add = self.multi(P, pow(2, index))
+            if bit == -1:
+                res = self.add(res, self.nega(minu_add))
+            elif bit == 1:
+                res = self.add(res, minu_add)
+            else:
+                pass
+            print(res)
+        return res
 
 def main(argv):
     a,b,p = map(int, (argv[0],argv[1],argv[2]))
@@ -128,9 +156,20 @@ def main(argv):
     elif argv[3] == "-m" or argv[3] == "--mul" or argv[3] == "--multi":
         P = tuple(eval(argv[4]))
         k = int(argv[5])
-        print(P, "*", k, "=", ecc.multi(P, k))
+        if argv.__len__() == 7 and argv[6] == "--naf":
+            print(P, "*", k, "=", ecc.multi(P, k), "using NAF")
+        else:
+            print(P, "*", k, "=", ecc.multi(P, k))
     else:
         pass
+
+'''
+ecc = ECC(1,6,11)
+ecc.calcuDots()
+P = (2, 7)
+for k in range(2, 100):
+    print(P, "*", k, "=", ecc.multi(P, k), "using NAF")
+'''
 
 if __name__ == "__main__":
     main(sys.argv[1:])
