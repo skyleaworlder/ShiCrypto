@@ -21,7 +21,7 @@ def jacobi(a, n):
 
     prime_arr = [i for i in range(2, ceil(sqrt(n))+1) if DIVVerify(i, n) and Fermat(i)]
     num_arr = [DIVNum(i, n) for i in prime_arr]
-    index_arr = [i for i in range(0, prime_arr.__len__())]
+    index_arr = range(0, prime_arr.__len__())
     print(prime_arr, num_arr)
     return reduce(lambda x,index : x*pow(
             legendre(a, prime_arr[index]), num_arr[index]
