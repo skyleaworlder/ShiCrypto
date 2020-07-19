@@ -1,3 +1,14 @@
+'''
+eg. python Calcu.py --add/-a 5 6 12
+    python Calcu.py --sub/-s 5 6 12
+    python Calcu.py --mul/-m 5 5 12
+    python Calcu.py --gcd/-g 7 5
+    python Calcu.py --lcm/-l 4 6
+    python Calcu.py --inv/-i 62 12
+    python Calcu.py --div/-d 2 6 12
+    python Calcu.py --sqrt 5 11
+    python Calcu.py --euler/-e 14
+'''
 import sys
 from math import ceil
 
@@ -12,6 +23,9 @@ def Mul(a, b, n):
 
 def GCD(a, b):
     return a if b == 0 else GCD(b, a % b)
+
+def LCM(a, b):
+    return a*b // GCD(a, b)
 
 def EXgcd(a, b):
     q_arr = [0]
@@ -48,11 +62,32 @@ def Sqrt(z, n):
     else:
         return [-1, -1]
 
+def Euler(n):
+    cnt = 0
+    for i in range(1, n):
+        cnt += 1 if GCD(n, i) == 1 else 0
+    return cnt
+
 def main(argv):
+    if argv[0] == "--add" or argv[0] == "-a":
+        print(argv[1]+"+"+argv[2]+" mod "+argv[3]+" =", Add(int(argv[1]), int(argv[2]), int(argv[3])))
+    if argv[0] == "--sub" or argv[0] == "-s":
+        print(argv[1]+"-"+argv[2]+" mod "+argv[3]+" =", Sub(int(argv[1]), int(argv[2]), int(argv[3])))
+    if argv[0] == "--mul" or argv[0] == "-m":
+        print(argv[1]+"*"+argv[2]+" mod "+argv[3]+" =", Mul(int(argv[1]), int(argv[2]), int(argv[3])))
     if argv[0] == "--gcd" or argv[0] == '-g':
         print("gcd("+argv[1]+","+argv[2]+") = ", GCD(int(argv[1]), int(argv[2])))
-    if argv[0] == "--rev" or argv[0] == '-r':
+    if argv[0] == "--lcm" or argv[0] == "-l":
+        print("lcm("+argv[1]+","+argv[2]+") = ", LCM(int(argv[1]), int(argv[2])))
+    if argv[0] == "--inv" or argv[0] == '-i':
         print(argv[1]+"^{-1} mod "+argv[2]+" = ", Inverse(int(argv[1]), int(argv[2])))
+    if argv[0] == "--div" or argv[0] == "-d":
+        print(argv[1]+"/"+argv[2]+" mod "+argv[3]+" =", Div(int(argv[1]), int(argv[2]), int(argv[3])))
+    if argv[0] == "--sqrt":
+        res = Sqrt(int(argv[1]), int(argv[2]))
+        print("√"+argv[1]+" mod"+argv[2]+" =", res[0], "and", res[1])
+    if argv[0] == "--euler" or argv[0] == "-e":
+        print("Phi("+argv[1]+") =", Euler(int(argv[1])))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
