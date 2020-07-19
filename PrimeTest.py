@@ -7,9 +7,10 @@ eg. python PrimeTest.py -m/--Miller-Rabin 64 12
 import sys
 import random
 from Calcu import GCD
-from ConMod import DIVNum
+from ConMod import DIVNum, CMVerify
 from sympy import prime, nextprime
 from math import ceil, sqrt
+from QuadResidue import jacobi
 
 '''
 n is input to be tested
@@ -56,6 +57,20 @@ def MillerRabin(n, iterNum=512):
 
     return False
 
+def SolovayStrassen(n, iterNum=512):
+    cnt = 0
+    while cnt < iterNum:
+        a = random.randint(1, n-1)
+        x = jacobi(a, n)
+        if x == 0:
+            return False
+        else:
+            y = pow(a, (n-1)//2, n)
+            if CMVerify(x, y, n) == False:
+                return False
+        cnt += 1
+    return True
+
 def main(argv):
     if argv[0] == "-m" or argv[0] == "--Miller-Rabin":
         flag = MillerRabin(int(argv[1]), int(argv[2]))
@@ -66,8 +81,9 @@ def main(argv):
     elif argv[0] == "-t" or argv[0] == "--Trial":
         print("using Trial test:")
         flag = Trial(int(argv[1]))
-    else:
-        pass
+    elif argv[0] == "-s" or argv[0] == "--Solovay-Strassen":
+        print("using Solovay-Strassen prime test:")
+        flag = SolovayStrassen(int(argv[1]), int(argv[2]))
 
     if flag:
         print(argv[1], "is a prime perhaps.")

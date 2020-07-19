@@ -4,28 +4,33 @@ eg. python QuadResidue.py -l/--legendre 2 13
 eg. python QuadResidue.py -j/--jacobi 2 26
 '''
 import sys
-from PrimeTest import Fermat
 from ConMod import DIVNum, DIVVerify
 from math import sqrt, ceil
 from functools import reduce
 
+'''
+p only can be odd prime
+'''
 def legendre(a, p):
-    if not Fermat(p):
-        return -2
-    ret = pow(a%p, (p-1)//2, p)
-    return ret if ret == 1 else ret-p
+    if a % p == 0:
+        return 0
+    else:
+        ret = pow(a%p, (p-1)//2, p)
+        return ret if ret == 1 else ret-p
 
 def jacobi(a, n):
-    if Fermat(n):
-        return legendre(a, n)
-
-    prime_arr = [i for i in range(2, ceil(sqrt(n))+1) if DIVVerify(i, n) and Fermat(i)]
-    num_arr = [DIVNum(i, n) for i in prime_arr]
-    index_arr = range(0, prime_arr.__len__())
-    print(prime_arr, num_arr)
-    return reduce(lambda x,index : x*pow(
-            legendre(a, prime_arr[index]), num_arr[index]
-        ), index_arr, 1)
+    if a == 1 or n == 1:
+        return 1
+    elif a == 0 or n % a == 0:
+        return 0
+    elif a == 2:
+        return int(pow(-1, (n**2-1)/8))
+    elif a == n-1:
+        return int(pow(-1, (n-1)/2))
+    elif a % 2 == 0:
+        return jacobi(2, n) * jacobi(a//2, n)
+    else:
+        return int(pow(-1, (a-1)*(n-1)/4)) * jacobi(n%a, a)
 
 def main(argv):
     if argv[0] == "-l" or argv[0] == "--legendre":
