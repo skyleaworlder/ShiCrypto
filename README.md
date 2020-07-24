@@ -56,8 +56,9 @@
     * [模素数椭圆曲线-ECIES](https://github.com/skyleaworlder/ShiCrypto/blob/master/ECIES.py#L14)：点压缩 / 点解压
 
 * 第 13 节：因子分解
-    * [Pollard-Rho 算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L124)
-    * [二次筛法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#27)：（劣等实现）
+    * [Pollard-Rho 算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L126)
+    * [Fermat 分解法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L198)：课件未涉及，与 `Dixon 随机平方算法` 类似
+    * [二次筛法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L32)：（劣等实现）
 
 * 第 14 节：离散对数问题
     * [Shanks 算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/Shanks.py#L12)
@@ -67,6 +68,7 @@
 * 第 15 节：连分数
     * [连分数展开](https://github.com/skyleaworlder/ShiCrypto/blob/master/continued.py#L27)
     * [收敛子计算](https://github.com/skyleaworlder/ShiCrypto/blob/master/continued.py#L30)
+    * [Wiener Attack](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L198)
 
 * 第 16 节：多项式系数
     * [多项式系数计算](https://github.com/skyleaworlder/ShiCrypto/blob/master/MultCoef.py#L10)：包括二项式系数
