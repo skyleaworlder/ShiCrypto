@@ -9,11 +9,16 @@ python IntFactorize.py --Rho/-r [<mode>] [<number>]
 eg. python IntFactorize.py --Rho --origin 110
     python IntFactorize.py -r --nowadays 110
 
+3. Fermat Factorization
+python IntFactorize.py --Fermat/-f [<number>] [<iterNum>]
+eg. python IntFactorize.py -f 11011 100
+    python IntFactorize.py --Fermat 11 100
+
 '''
 import sys
 from QuadResidue import legendre
 from PrimeTest import Fermat
-from ConMod import CMVerify, DIVVerify
+from ConMod import CMVerify, DIVVerify, DIVNum
 from Calcu import GCD
 from math import sqrt, ceil
 import numpy as np
@@ -156,6 +161,35 @@ class PollardRho:
         else:
             return d
 
+'''
+Fermat Integer-Factorization ALG
+if n can have factors p, q
+    and a = (p+q)/2, b = (p-q)/2
+    then a^2 - b^2 = n
+    try to find a^2(a square larger than n)
+n:          input for decomped
+iterNum:    iter times
+'''
+def FermatFactor(n, iterNum=512):
+    factors = []
+    if DIVVerify(2, n):
+        n = n // pow(2, DIVNum(2, n))
+        factors.append(2)
+
+    def _isSquare(n):
+        return pow(ceil(sqrt(n)), 2) == n
+
+    beg = ceil(sqrt(n))
+    for i in range(iterNum):
+        x = beg + i
+        if _isSquare(pow(x, 2) - n) \
+            and x + sqrt(pow(x, 2) - n) != 1 \
+            and x - sqrt(pow(x, 2) - n) != 1:
+            factors.append(x + sqrt(pow(x, 2) - n))
+            factors.append(x - sqrt(pow(x, 2) - n))
+            return factors
+    return factors
+
 def main(argv):
     choice = argv[0]
     if choice == "--QuadSieve" or choice == "-qs":
@@ -172,6 +206,14 @@ def main(argv):
             print("Failure.", n, "might be a prime.")
         else:
             print("Success:", n, "can be decomped to", ans, "and", n // ans)
+    elif choice == "--Fermat" or choice == "-f":
+        n = int(argv[1])
+        iterNum = int(argv[2])
+        ans = FermatFactor(n, iterNum)
+        if ans == []:
+            print("Failure.", n, "might be a prime, or try larger iterNum again.")
+        else:
+            print("Success.", ans, "are factors of", n)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
