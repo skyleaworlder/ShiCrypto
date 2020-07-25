@@ -15,9 +15,10 @@
     * [Morse](https://github.com/skyleaworlder/ShiCrypto/blob/master/Morse.py#L4)
 
 * 第 4 节：整数理论
-    * [最大公因数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L24)：辗转相除
-    * [最小公倍数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L27)
-    * [扩展欧几里得算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L30)
+    * [最大公因数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L25)：辗转相除
+    * [最小公倍数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L28)
+    * [扩展欧几里得算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L31)
+    * [扩展欧几里得算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L38)：解二元不定方程
 
 * 第 5 节：同余式
     * [同余判断](https://github.com/skyleaworlder/ShiCrypto/blob/master/ConMod.py#L4)
@@ -25,7 +26,7 @@
     * [中国剩余定理](https://github.com/skyleaworlder/ShiCrypto/blob/master/CRT.py#L9)
 
 * 第 6 节：群
-    * [模整数群-逆元](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L37)
+    * [模整数群-逆元](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L57)
 
 * 第 7 节：原根
     * [欧拉函数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L65)：定义穷举计算
@@ -57,7 +58,7 @@
 
 * 第 13 节：因子分解
     * [Pollard-Rho 算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L126)
-    * [Fermat 分解法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L198)：课件未涉及，与 `Dixon 随机平方算法` 类似
+    * [Fermat 分解法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L169)：课件未涉及，与 `Dixon 随机平方算法` 类似
     * [二次筛法](https://github.com/skyleaworlder/ShiCrypto/blob/master/IntFactorize.py#L32)：（劣等实现）
 
 * 第 14 节：离散对数问题

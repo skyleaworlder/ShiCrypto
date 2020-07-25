@@ -4,6 +4,7 @@ eg. python Calcu.py --add/-a 5 6 12
     python Calcu.py --mul/-m 5 5 12
     python Calcu.py --gcd/-g 7 5
     python Calcu.py --lcm/-l 4 6
+    python Calcu.py --exeuclid/-ex 13 64
     python Calcu.py --inv/-i 62 12
     python Calcu.py --div/-d 2 6 12
     python Calcu.py --sqrt 5 11
@@ -34,23 +35,31 @@ def EXgcd(a, b):
         a, b = b, a % b
     return q_arr, a
 
+def EXeuclid(a, b):
+    ''' b > a normally '''
+    q_arr, gcd = EXgcd(b, a)
+    s_arr = [1, 0]
+    t_arr = [0, 1]
+    '''
+    if r_n == 1, q_arr.len == n.
+    cos t_n = t_{n-2} + q_{n-1} * t_{n-1}
+        then q_arr do not need q_n
+        then iterNum = (q-1) - 1
+    '''
+    iterNum = q_arr.__len__() - 2
+    for i in range(0, iterNum):
+        ''' t_n = t_{n-2} + q_{n-1} * t_{n-1} '''
+        ''' s_n = s_{n-2} + q_{n-1} * s_{n-1} '''
+        s_arr.append((-1)**(i)*(abs(s_arr[i]) + q_arr[i+1] * abs(s_arr[i+1])))
+        t_arr.append((-1)**(i+1)*(abs(t_arr[i]) + q_arr[i+1] * abs(t_arr[i+1])))
+    return s_arr[-1], t_arr[-1], gcd
+
 def Inverse(a, n):
-    q_arr, gcd = EXgcd(n, a)
+    s, t, gcd = EXeuclid(a, n)
     if gcd != 1:
         return -1
     else:
-        t_arr = [0, 1]
-        '''
-        if r_n == 1, q_arr.len == n.
-        cos t_n = t_{n-2} + q_{n-1} * t_{n-1}
-            then q_arr do not need q_n
-            then iterNum = (q-1) - 1
-        '''
-        iterNum = q_arr.__len__() - 2
-        for i in range(0, iterNum):
-            ''' t_n = t_{n-2} + q_{n-1} * t_{n-1} '''
-            t_arr.append((-1)**(i+1)*(abs(t_arr[i]) + q_arr[i+1] * abs(t_arr[i+1])))
-        return t_arr[-1] % n # return the last elem in t_arr
+        return t % n # return the last elem in t_arr
 
 def Div(a, b, p):
     return Mul(a, Inverse(b, p), p)
@@ -79,6 +88,9 @@ def main(argv):
         print("gcd("+argv[1]+","+argv[2]+") = ", GCD(int(argv[1]), int(argv[2])))
     if argv[0] == "--lcm" or argv[0] == "-l":
         print("lcm("+argv[1]+","+argv[2]+") = ", LCM(int(argv[1]), int(argv[2])))
+    if argv[0] == "--exeuclid" or argv[0] == "-ex":
+        s, t, gcd = EXeuclid(int(argv[1]), int(argv[2]))
+        print(str(t)+"*"+argv[1]+" + "+str(s)+"*"+argv[2]+" =", gcd)
     if argv[0] == "--inv" or argv[0] == '-i':
         print(argv[1]+"^{-1} mod "+argv[2]+" = ", Inverse(int(argv[1]), int(argv[2])))
     if argv[0] == "--div" or argv[0] == "-d":
