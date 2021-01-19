@@ -1,20 +1,15 @@
 '''
-1. Quadratic Sieve
-python IntFactorize.py --QuadSieve/-qs [<number>] [<base-num>]
-eg. python IntFactorize.py --QuadSieve 110 100
-    python IntFactorize.py -qs 11004 100
-
-2. Pollard Rho
+1. Pollard Rho
 python IntFactorize.py --Rho/-r [<mode>] [<number>]
 eg. python IntFactorize.py --Rho --origin 110
     python IntFactorize.py -r --nowadays 110
 
-3. Fermat Factorization
+2. Fermat Factorization
 python IntFactorize.py --Fermat/-f [<number>] [<iterNum>]
 eg. python IntFactorize.py -f 11011 100
     python IntFactorize.py --Fermat 11 100
 
-4. Wiener Attack
+3. Wiener Attack
 python IntFactorize.py --Wiener/-w [<number>] [<public-key-b>]
 eg. python IntFactorize.py -w 160523347 60728973
     python IntFactorize.py --Wiener 160523347 60728981
