@@ -8,7 +8,6 @@ import sys
 from ConMod import CMVerify, CongEq
 from Calcu import GCD, Mul, Add, Inverse, Sub
 from Primitive import elemOrder
-from math import inf
 
 '''
 alpha^a = beta (mod n)
@@ -24,7 +23,7 @@ class PollardRho:
         elem in finite group can have infinite order
         such as 2 in { 0, 1, 2, 3 }
         '''
-        assert self.ord != inf
+        assert self.ord != float('inf')
 
         self.S1 = []
         self.S2 = []

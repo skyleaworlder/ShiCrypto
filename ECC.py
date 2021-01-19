@@ -12,11 +12,11 @@ eg. python ECC.py 1 6 11 -m "(2,7)" 7
     python ECC.py 1 6 11 -m "(2,7)" 1100 --naf
 '''
 import sys
-import numpy as np
+#import numpy as np
 from PrimeTest import Fermat
 from Calcu import Inverse, Add, Sub, Mul, Div, Sqrt
 from QuadResidue import legendre
-from math import ceil, inf, log2
+from math import ceil, log
 
 class ECC:
 
@@ -25,23 +25,23 @@ class ECC:
         self.b = b
         assert Fermat(p)
         self.p = p
-        self.dots = [(inf, inf)]
+        self.dots = [(float('inf'), float('inf'))]
 
     def _fx(self, x):
         return x**3 + self.a*x + self.b
 
     def _check_exist(self, P):
-        return (self._fx(P[0]) % self.p == Mul(P[1], P[1], self.p)) or (P == (inf, inf))
+        return (self._fx(P[0]) % self.p == Mul(P[1], P[1], self.p)) or (P == (float('inf'), float('inf')))
 
     def _NAF(self, num):
         num_bit = []
         ''' ceil+2 because when num equal 2^i '''
-        for i in range(1, ceil(log2(num))+2):
+        for i in range(1, int(ceil(log(num, 2)))+2):
             num_bit.append(1) if num % (2**i) - num % (2**(i-1)) != 0 else num_bit.append(0)
         num_bit.append(0)
-        L = np.array(num_bit)
+        L = num_bit
         index = [0, 0]
-        while index[0] < L.shape[0]-1 and index[1] < L.shape[0]-1:
+        while index[0] < len(L)-1 and index[1] < len(L)-1:
             '''
             if local elem is 0, or local elem is 1 but next is 0
             index auto increment continually
@@ -61,9 +61,8 @@ class ECC:
                 L[index[1]] = 1
                 index[0] = index[1]
         ''' keep msb 1 '''
-        print(L)
-        L = L[:-1] if L[L.shape[0]-1] == 0 else L
-        return L
+        L = L[:-1] if L[len(L)-1] == 0 else L
+        return num_bit, L
 
     def calcuDots(self):
         '''
@@ -80,20 +79,20 @@ class ECC:
             if y != (-1, -1):
                 self.dots.append((x, y[0]))
                 self.dots.append((x, y[1]))
-        self.dots.append((inf, inf))
+        self.dots.append((float('inf'), float('inf')))
 
     def add(self, P, Q):
         assert (self._check_exist(P) and self._check_exist(Q))
         '''
         0. P=O|Q=O: RET P or Q
-        1. P+Q=O:   RET (inf, inf)
+        1. P+Q=O:   RET (float('inf'), float('inf'))
         2. P=Q:     lambda = dy/dx = (3x_1^2 + a)/2y_1
         3. ELSE:    lambda = delta y / delta x
         '''
-        if P == (inf, inf) or Q == (inf, inf):
-            return P if Q == (inf, inf) else Q
+        if P == (float('inf'), float('inf')) or Q == (float('inf'), float('inf')):
+            return P if Q == (float('inf'), float('inf')) else Q
         elif P[0] == Q[0] and Add(P[1], Q[1], self.p) == 0:
-            return (inf, inf)
+            return (float('inf'), float('inf'))
         elif P == Q:
             lamb = Div(
                 Add(3*P[0]**2, self.a, self.p),

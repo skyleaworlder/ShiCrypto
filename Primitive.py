@@ -1,7 +1,7 @@
 import sys
 from Calcu import Euler, GCD
 from ConMod import DIVVerify, CMVerify
-from math import inf, ceil, sqrt
+from math import ceil, sqrt
 from sympy import prime
 
 '''
@@ -13,7 +13,7 @@ def elemOrder(elem, n):
         if pow(elem, order, n) == 1:
             return order
         order += 1
-    return inf
+    return float('inf')
 
 '''
 use phi to verify

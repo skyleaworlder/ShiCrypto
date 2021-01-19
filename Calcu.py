@@ -62,10 +62,12 @@ def Inverse(a, n):
         return t % n # return the last elem in t_arr
 
 def Div(a, b, p):
+    b_inv = Inverse(b, p)
+    assert b_inv != -1
     return Mul(a, Inverse(b, p), p)
 
 def Sqrt(z, n):
-    for i in range(0, ceil((n+1) / 2)):
+    for i in range(0, int(ceil((n+1) / 2))):
         if pow(i, 2, n) == (z%n):
             return [i, n - i]
     else:
@@ -97,7 +99,7 @@ def main(argv):
         print(argv[1]+"/"+argv[2]+" mod "+argv[3]+" =", Div(int(argv[1]), int(argv[2]), int(argv[3])))
     if argv[0] == "--sqrt":
         res = Sqrt(int(argv[1]), int(argv[2]))
-        print("√"+argv[1]+" mod"+argv[2]+" =", res[0], "and", res[1])
+        print("sqrt("+argv[1]+") mod "+argv[2]+" = ", res[0], " and ", res[1])
     if argv[0] == "--euler" or argv[0] == "-e":
         print("Phi("+argv[1]+") =", Euler(int(argv[1])))
 

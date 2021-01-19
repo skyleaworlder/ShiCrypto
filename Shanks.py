@@ -10,7 +10,7 @@ from math import ceil, sqrt
 from Calcu import Inverse, Mul, Add
 
 def Shanks(n, alpha, beta):
-    m = ceil(sqrt(n))
+    m = int(ceil(sqrt(n)))
 
     j_alpha = [
         {   "j": j,

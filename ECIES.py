@@ -13,7 +13,7 @@ from ConMod import CMVerify
 
 class ECIES:
 
-    def __init__(self, E:ECC, P:tuple, m:int, n:int):
+    def __init__(self, E, P, m, n):
         self.E = E
         self.E.calcuDots()
         assert P in self.E.dots
