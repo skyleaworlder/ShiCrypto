@@ -4,8 +4,9 @@ python ECIES.py [<a>] [<b>] [<p>] [<points-str>]
 eg. python ECIES.py 1 6 11 "(2,7)" 3 5 10
 '''
 
-from ..src.ECC import ECC
-from ..src.ECIES import ECIES
+import sys
+from src.ECC import ECC
+from src.ECIES import ECIES
 
 def main(argv):
     a,b,p = map(int, (argv[0],argv[1],argv[2]))
@@ -25,3 +26,6 @@ def main(argv):
     print("2. number encrypted:", cipher[1])
     print("plaintxt:")
     print("your input is", ecies.decrypt(cipher))
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

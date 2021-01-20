@@ -11,7 +11,8 @@ eg. python Calcu.py --add/-a 5 6 12
     python Calcu.py --euler/-e 14
 '''
 
-from ..src.Calcu import *
+import sys
+from src.Calcu import *
 
 def main(argv):
     if argv[0] == "--add" or argv[0] == "-a":
@@ -36,3 +37,6 @@ def main(argv):
         print("sqrt("+argv[1]+") mod "+argv[2]+" = ", res[0], " and ", res[1])
     if argv[0] == "--euler" or argv[0] == "-e":
         print("Phi("+argv[1]+") =", Euler(int(argv[1])))
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

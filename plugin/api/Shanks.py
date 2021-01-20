@@ -6,7 +6,8 @@ eg. python Shanks.py 121 13 5
 the first and second success, while the third one failed
 '''
 
-from ..src.Shanks import Shanks
+import sys
+from src.Shanks import Shanks
 
 def main(argv):
     n, alpha, beta = map(int, (argv[0], argv[1], argv[2]))
@@ -16,3 +17,6 @@ def main(argv):
         print("Success:", argv[1]+"^"+str(a)+" = "+argv[2])
     else:
         print("Failed")
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

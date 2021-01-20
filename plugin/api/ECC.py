@@ -12,7 +12,8 @@ eg. python ECC.py 1 6 11 -m "(2,7)" 7
     python ECC.py 1 6 11 -m "(2,7)" 1100 --naf
 '''
 
-from ..src.ECC import ECC
+import sys
+from src.ECC import ECC
 
 def main(argv):
     a,b,p = map(int, (argv[0],argv[1],argv[2]))
@@ -35,3 +36,6 @@ def main(argv):
             print(P, "*", k, "=", ecc.multi(P, k))
     else:
         pass
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

@@ -3,7 +3,8 @@ python continued.py [<nume>] [<deno>] [<expand-layer>]
 eg. python continued.py 17 45 4
 '''
 
-from ..src.continued import continuedFrac
+import sys
+from src.continued import continuedFrac
 
 def main(argv):
     nume, deno = int(argv[0]), int(argv[1])
@@ -18,3 +19,6 @@ def main(argv):
     print(argv[0]+"/"+argv[1]+"'s abbreviated notation is", obj.a_arr, "(layer = "+str(layer)+")")
     print("and nume arr is", obj.p_arr)
     print("    deno arr is", obj.q_arr)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

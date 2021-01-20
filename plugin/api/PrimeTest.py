@@ -5,7 +5,8 @@ eg. python PrimeTest.py -m/--Miller-Rabin 64 12
     python PrimeTest.py -t/--Trial 128
 '''
 
-from ..src.PrimeTest import MillerRabin, Fermat, Trial, SolovayStrassen
+import sys
+from src.PrimeTest import MillerRabin, Fermat, Trial, SolovayStrassen
 
 def main(argv):
     if argv[0] == "-m" or argv[0] == "--Miller-Rabin":
@@ -25,3 +26,6 @@ def main(argv):
         print(argv[1], "is a prime perhaps.")
     else:
         print(argv[1], "shouldn't be a prime.")
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

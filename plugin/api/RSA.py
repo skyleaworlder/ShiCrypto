@@ -6,7 +6,8 @@
 eg. python RSA.py 512 --null 123
 '''
 
-from ..src.RSA import RSA
+import sys
+from src.RSA import RSA
 
 def main(argv):
     bit = int(argv[0])
@@ -29,3 +30,6 @@ def main(argv):
     print("ciphertxt is:", cipher)
     plaintxt = rsa.decrypt(cipher)
     print("plaintxt is (gain from ciphertxt):", plaintxt)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

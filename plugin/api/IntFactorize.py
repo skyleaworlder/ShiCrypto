@@ -15,7 +15,8 @@ eg. python IntFactorize.py -w 160523347 60728973
     python IntFactorize.py --Wiener 160523347 60728981
 '''
 
-from ..src.IntFactorize import PollardRho, FermatFactor, WienerAttack
+import sys
+from src.IntFactorize import PollardRho, FermatFactor, WienerAttack
 
 def main(argv):
     choice = argv[0]
@@ -44,3 +45,6 @@ def main(argv):
             print("Failure.", n, "cannot be factorized by this methods")
         else:
             print("Success.", ans, "are factors of", n)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

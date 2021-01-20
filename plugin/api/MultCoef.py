@@ -4,7 +4,8 @@ eg. python MultCoef.py 64 -- 2 3 4 5 6 7 8 9 10 10
     python MultCoef.py 12 -- 5 7
 '''
 
-from ..src.MultCoef import MultCoef
+import sys
+from src.MultCoef import MultCoef
 
 def main(argv):
     n = int(argv[0])
@@ -24,3 +25,6 @@ def main(argv):
     obj = MultCoef(n, k_arr)
     obj.calcu()
     print("(", obj.n, "//", obj.k_arr, ") =", obj.res)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

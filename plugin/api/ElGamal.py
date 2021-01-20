@@ -4,7 +4,8 @@ eg. python ElGamal.py 101 11 45 46
     python ElGamal.py 101 10 45 46
 '''
 
-from ..src.ElGamal import ElGamal
+import sys
+from src.ElGamal import ElGamal
 
 def main(argv):
     n = int(argv[0])
@@ -22,3 +23,6 @@ def main(argv):
     print("y_1 is", ciphertxt[0], "and y_2 is", ciphertxt[1], "\n")
     plaintxt = elg.decrypt(ciphertxt[0], ciphertxt[1])
     print("plaintxt is", plaintxt)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
