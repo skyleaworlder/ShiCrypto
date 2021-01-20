@@ -1,10 +1,3 @@
-'''
-python Pollard-Rho-Log.py [<alpha>] [<beta>] [<modulo>]
-eg. python Pollard-Rho-Log.py 2 5 98
-    python Pollard-Rho-Log.py 3 12 5
-    python Pollard-Rho-Log.py 11 980 12546
-'''
-import sys
 from ConMod import CMVerify, CongEq
 from Calcu import GCD, Mul, Add, Inverse, Sub
 from Primitive import elemOrder
@@ -76,14 +69,3 @@ class PollardRho:
                 Sub(a, a_, self.ord),
                 self.ord
             )
-
-def main(argv):
-    pr = PollardRho(int(argv[0]), int(argv[1]), int(argv[2]))
-    res = pr.PollardRho()
-    resstr = ""
-    for elem in res:
-        resstr += str(elem) + " "
-    print("log_"+argv[0]+"("+argv[1]+") mod "+argv[2]+": "+resstr)
-
-if __name__ == "__main__":
-    main(sys.argv[1:])

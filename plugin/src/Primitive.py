@@ -1,4 +1,3 @@
-import sys
 from Calcu import Euler, GCD
 from ConMod import DIVVerify, CMVerify
 from math import ceil, sqrt

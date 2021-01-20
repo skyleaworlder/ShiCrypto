@@ -1,9 +1,3 @@
-'''
-1. python QuadResidue.py [<mode>] [<top-index>] [<bot-index>]
-eg. python QuadResidue.py -l/--legendre 2 13
-eg. python QuadResidue.py -j/--jacobi 2 26
-'''
-import sys
 from ConMod import DIVNum, DIVVerify
 from math import sqrt, ceil
 from functools import reduce
@@ -31,12 +25,3 @@ def jacobi(a, n):
         return jacobi(2, n) * jacobi(a//2, n)
     else:
         return int(pow(-1, (a-1)*(n-1)/4)) * jacobi(n%a, a)
-
-def main(argv):
-    if argv[0] == "-l" or argv[0] == "--legendre":
-        print("("+argv[1]+"/"+argv[2]+") =", legendre(int(argv[1]), int(argv[2])))
-    if argv[0] == "-j" or argv[0] == "--jacobi":
-        print("("+argv[1]+"/"+argv[2]+") =", jacobi(int(argv[1]), int(argv[2])))
-
-if __name__ == "__main__":
-    main(sys.argv[1:])
