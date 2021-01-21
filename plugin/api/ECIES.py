@@ -1,9 +1,15 @@
+name = "ECIES"
 help_info = '''
 [ShiCrypto] You're using CLI-ECIES, the following help info might be helpful:
             Usage: python ECIES.py [<a>] [<b>] [<p>] [<points-str>]
                 [<m-private key>] [<n-prime>] [<plaintxt-num>]
             eg. python ECIES.py 1 6 11 "(2,7)" 3 5 10
 '''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.ECC import ECC

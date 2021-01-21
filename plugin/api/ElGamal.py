@@ -1,9 +1,15 @@
+name = "ElGamal"
 help_info = '''
 [ShiCrypto] You're using CLI-ElGamal, the following help info might be helpful:
             Usage: python ElGamal.py [<public-n>] [<public-alpha>] [<private-a>] [<plaintxt>]
             eg. python ElGamal.py 101 11 45 46
                 python ElGamal.py 101 10 45 46
 '''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.ElGamal import ElGamal
