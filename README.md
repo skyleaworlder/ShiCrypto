@@ -10,30 +10,30 @@
 ## 内容 / 目录
 
 * 第 2 节：密码学基础
-    * [RSA](https://github.com/skyleaworlder/ShiCrypto/blob/master/RSA.py#L13)：最简单的实现
-    * [ElGamal](https://github.com/skyleaworlder/ShiCrypto/blob/master/ElGamal.py#L10)：最简单的实现
-    * [Morse](https://github.com/skyleaworlder/ShiCrypto/blob/master/Morse.py#L4)
+    * [RSA](https://github.com/skyleaworlder/ShiCrypto/blob/mastercc/plugin/api/src/RSA.py#L5)：最简单的实现
+    * [ElGamal](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/ElGamal.py#L4)：最简单的实现
+    * [Morse](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Morse.py#L3)
 
 * 第 4 节：整数理论
-    * [最大公因数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L25)：辗转相除
-    * [最小公倍数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L28)
-    * [扩展欧几里得算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L31)
-    * [扩展欧几里得算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L38)：解二元不定方程
+    * [最大公因数](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Calcu.py#L13)：辗转相除
+    * [最小公倍数](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Calcu.py#L16)
+    * [扩展欧几里得算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Calcu.py#L19)
+    * [扩展欧几里得算法](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Calcu.py#L26)：解二元不定方程
 
 * 第 5 节：同余式
-    * [同余判断](https://github.com/skyleaworlder/ShiCrypto/blob/master/ConMod.py#L4)
-    * [一次同余式求解](https://github.com/skyleaworlder/ShiCrypto/blob/master/ConMod.py#L17)
-    * [中国剩余定理](https://github.com/skyleaworlder/ShiCrypto/blob/master/CRT.py#L9)
+    * [同余判断](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/ConMod.py#L4)
+    * [一次同余式求解](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/ConMod.py#L17)
+    * [中国剩余定理](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/CRT.py#L4)
 
 * 第 6 节：群
-    * [模整数群-逆元](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L57)
+    * [模整数群-逆元](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Calcu.py#L45)
 
 * 第 7 节：原根
-    * [欧拉函数](https://github.com/skyleaworlder/ShiCrypto/blob/master/Calcu.py#L65)：定义穷举计算
-    * [元素的阶](https://github.com/skyleaworlder/ShiCrypto/blob/master/Primitive.py#L10)
-    * [原根性质](https://github.com/skyleaworlder/ShiCrypto/blob/master/Primitive.py#L22)
-    * [原根判定充要条件](https://github.com/skyleaworlder/ShiCrypto/blob/master/Primitive.py#L34)
-    * [元素幂的阶](https://github.com/skyleaworlder/ShiCrypto/blob/master/Primitive.py#L58)
+    * [欧拉函数](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Calcu.py#L64)：定义穷举计算
+    * [元素的阶](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Primitive.py#L9)
+    * [原根性质](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Primitive.py#L21)
+    * [原根判定充要条件](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Primitive.py#L33)
+    * [元素幂的阶](https://github.com/skyleaworlder/ShiCrypto/blob/master/plugin/api/src/Primitive.py#L57)
 
 * 第 8 节：二次剩余
     * [勒让德符号](https://github.com/skyleaworlder/ShiCrypto/blob/master/QuadResidue.py#L14)：欧拉判别条件
