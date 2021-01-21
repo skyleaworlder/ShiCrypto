@@ -1,7 +1,15 @@
+name = "continued"
+help_info = '''
+[ShiCrypto] You're using CLI-continued, the following help info might be helpful:
+            Usage: python continued.py [<nume>] [<deno>] [<expand-layer>]
+            eg. python continued.py 17 45 4
+                python continued.py 17 45 6
 '''
-python continued.py [<nume>] [<deno>] [<expand-layer>]
-eg. python continued.py 17 45 4
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.continued import continuedFrac

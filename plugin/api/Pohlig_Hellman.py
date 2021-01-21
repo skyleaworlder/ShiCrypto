@@ -1,8 +1,15 @@
+name = "Pohlig_Hellman"
+help_info = '''
+[ShiCrypto] You're using CLI-Pohlig_Hellman, the following help info might be helpful:
+            Usage: python Pohlig-Hellman.py [<n>] [<alpha>] [<beta>] [<q>] [<c>]
+            eg. python Pohlig-Hellman.py 28703 5 8563 28703 100
+                python Pohlig-Hellman.py 31153 10 12611 31153 100
 '''
-python Pohlig-Hellman.py [<n>] [<alpha>] [<beta>] [<q>] [<c>]
-eg. python Pohlig-Hellman.py 28703 5 8563 28703 100
-    python Pohlig-Hellman.py 31153 10 12611 31153 100
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.Pohlig_Hellman import PohligHellman

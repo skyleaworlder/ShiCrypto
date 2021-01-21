@@ -1,9 +1,16 @@
+name = "PrimeTest"
+help_info = '''
+[ShiCrypto] You're using CLI-PrimeTest, the following help info might be helpful:
+            Usage: python PrimeTest.py [<choice>] [<test-num>] [<iter-num>]
+            eg. python PrimeTest.py -m/--Miller-Rabin 64 12
+                python PrimeTest.py -f/--Fermat 65 12
+                python PrimeTest.py -t/--Trial 128
 '''
-python PrimeTest.py [<choice>] [<test-num>] [<iter-num>]
-eg. python PrimeTest.py -m/--Miller-Rabin 64 12
-    python PrimeTest.py -f/--Fermat 65 12
-    python PrimeTest.py -t/--Trial 128
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.PrimeTest import MillerRabin, Fermat, Trial, SolovayStrassen

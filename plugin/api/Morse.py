@@ -1,7 +1,14 @@
-"""
-python Morse.py -e/--encode 456789
-python Morse.py -d/--decode ....- ..... -.... --... ---.. ----.
-"""
+name = "Morse"
+help_info = '''
+[ShiCrypto] You're using CLI-Morse, the following help info might be helpful:
+            eg. python Morse.py -e/--encode 456789
+                python Morse.py -d/--decode ....- ..... -.... --... ---.. ----.
+'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.Morse import enMorse, deMorse

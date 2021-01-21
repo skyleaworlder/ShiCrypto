@@ -1,15 +1,33 @@
+name = "Calcu"
+help_info = '''
+[ShiCrypto] You're using CLI-Calcu, the following help info might be helpful:
+            Usage.1: python Calcu.py [<choice>] [<op1>] [<op2>] [<modulo>]
+            add / sub / mul / div are in choices.
+            eg. python Calcu.py --add/-a 5 6 12
+                python Calcu.py --sub/-s 5 6 12
+                python Calcu.py --mul/-m 5 5 12
+                python Calcu.py --div/-d 2 6 12
+
+            Usage.2: python Calcu.py [<choice>] [<op1>] [<op2>]
+            gcd / lcm / exculid(process) are in choices.
+            eg. python Calcu.py --gcd/-g 7 5
+                python Calcu.py --lcm/-l 4 6
+                python Calcu.py --exeuclid/-ex 13 64
+
+            Usage.3: python Calcu.py [<choice>] [<op>] [<modulo>]
+            inv(inverse), sqrt are in choices.
+            eg. python Calcu.py --inv/-i 62 12
+                python Calcu.py --sqrt 5 11
+
+            Usage.4: python Calcu.py [<choice>] [<op>]
+            euler(function) is in choices.
+            eg. python Calcu.py --euler/-e 14
 '''
-eg. python Calcu.py --add/-a 5 6 12
-    python Calcu.py --sub/-s 5 6 12
-    python Calcu.py --mul/-m 5 5 12
-    python Calcu.py --gcd/-g 7 5
-    python Calcu.py --lcm/-l 4 6
-    python Calcu.py --exeuclid/-ex 13 64
-    python Calcu.py --inv/-i 62 12
-    python Calcu.py --div/-d 2 6 12
-    python Calcu.py --sqrt 5 11
-    python Calcu.py --euler/-e 14
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.Calcu import *

@@ -1,16 +1,23 @@
-'''
-1. python ECC.py [<a>] [<b>] [<p>] -d
-eg. python ECC.py 1 6 11 -d
+name = "ECC"
+help_info = '''
+[ShiCrypto] You're using CLI-ECC, the following help info might be helpful:
+            Usage.1 python ECC.py [<a>] [<b>] [<p>] -d
+            eg. python ECC.py 1 6 11 -d
 
-2. python ECC.py [<a>] [<b>] [<p>] -a/--add [<point-str>] [<point-str>]
-need input str command param
-eg. python ECC.py 1 6 11 -a "(2,7)" "(2,7)"
+            Usage.2 python ECC.py [<a>] [<b>] [<p>] -a/--add [<point-str>] [<point-str>]
+            need input str command param
+            eg. python ECC.py 1 6 11 -a "(2,7)" "(2,7)"
 
-3. python ECC.py [<a>] [<b>] [<p>] -m/--mul/--multi [<point-str>] [<times>] [<choice>]
-need input str command param
-eg. python ECC.py 1 6 11 -m "(2,7)" 7
-    python ECC.py 1 6 11 -m "(2,7)" 1100 --naf
+            Usage.3 python ECC.py [<a>] [<b>] [<p>] -m/--mul/--multi [<point-str>] [<times>] [<choice>]
+            need input str command param
+            eg. python ECC.py 1 6 11 -m "(2,7)" 7
+                python ECC.py 1 6 11 -m "(2,7)" 1100 --naf
 '''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.ECC import ECC

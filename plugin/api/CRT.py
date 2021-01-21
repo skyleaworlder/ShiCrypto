@@ -1,7 +1,14 @@
+name = "CRT"
+help_info = '''
+[ShiCrypto] You're using CLI-CRT, the following help info might be helpful:
+            Usage: python CRT.py [<b-list>] -- [<m-list>]
+            eg. python CRT.py 1 2 -- 4 5
 '''
-python CRT.py [<b-list>] -- [<m-list>]
-eg. python CRT.py 1 2 -- 4 5
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.CRT import CRT

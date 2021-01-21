@@ -1,8 +1,15 @@
+name = "MultCoef"
+help_info = '''
+[ShiCrypto] You're using CLI-MultCoef, the following help info might be helpful:
+            Usage: python MultCoef.py [<top-index>] -- [<bot-index-list>]
+            eg. python MultCoef.py 64 -- 2 3 4 5 6 7 8 9 10 10
+                python MultCoef.py 12 -- 5 7
 '''
-python MultCoef.py [<top-index>] -- [<bot-index-list>]
-eg. python MultCoef.py 64 -- 2 3 4 5 6 7 8 9 10 10
-    python MultCoef.py 12 -- 5 7
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.MultCoef import MultCoef

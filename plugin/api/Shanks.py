@@ -1,10 +1,17 @@
+name = "Shanks"
+help_info = '''
+[ShiCrypto] You're using CLI-Shanks, the following help info might be helpful:
+            Usage: python Shanks.py [<modulo>] [<alpha>] [<beta>]
+            eg. python Shanks.py 121 13 5
+                python Shanks.py 41 12 7
+                python Shanks.py 121 3 5
+            NOTICE: the first and second success, while the third one failed
 '''
-python Shanks.py [<modulo>] [<alpha>] [<beta>]
-eg. python Shanks.py 121 13 5
-    python Shanks.py 41 12 7
-    python Shanks.py 121 3 5
-the first and second success, while the third one failed
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.Shanks import Shanks

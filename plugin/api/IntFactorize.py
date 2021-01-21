@@ -1,19 +1,26 @@
-'''
-1. Pollard Rho
-python IntFactorize.py --Rho/-r [<mode>] [<number>]
-eg. python IntFactorize.py --Rho --origin 110
-    python IntFactorize.py -r --nowadays 110
+name = "IntFactorize"
+help_info = '''
+[ShiCrypto] You're using CLI-IntFactorize, the following help info might be helpful:
+            Usage.1 Pollard Rho
+            python IntFactorize.py --Rho/-r [<mode>] [<number>]
+            eg. python IntFactorize.py --Rho --origin 110
+                python IntFactorize.py -r --nowadays 110
 
-2. Fermat Factorization
-python IntFactorize.py --Fermat/-f [<number>] [<iterNum>]
-eg. python IntFactorize.py -f 11011 100
-    python IntFactorize.py --Fermat 11 100
+            Usage.2 Fermat Factorization
+            python IntFactorize.py --Fermat/-f [<number>] [<iterNum>]
+            eg. python IntFactorize.py -f 11011 100
+                python IntFactorize.py --Fermat 11 100
 
-3. Wiener Attack
-python IntFactorize.py --Wiener/-w [<number>] [<public-key-b>]
-eg. python IntFactorize.py -w 160523347 60728973
-    python IntFactorize.py --Wiener 160523347 60728981
+            Usage.3 Wiener Attack
+            python IntFactorize.py --Wiener/-w [<number>] [<public-key-b>]
+            eg. python IntFactorize.py -w 160523347 60728973
+                python IntFactorize.py --Wiener 160523347 60728981
 '''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.IntFactorize import PollardRho, FermatFactor, WienerAttack

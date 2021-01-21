@@ -1,8 +1,15 @@
+name = "QuadResidue"
+help_info = '''
+[ShiCrypto] You're using CLI-QuadResidue, the following help info might be helpful:
+            Usage: python QuadResidue.py [<mode>] [<top-index>] [<bot-index>]
+            eg. python QuadResidue.py -l/--legendre 2 13
+                python QuadResidue.py -j/--jacobi 2 26
 '''
-1. python QuadResidue.py [<mode>] [<top-index>] [<bot-index>]
-eg. python QuadResidue.py -l/--legendre 2 13
-eg. python QuadResidue.py -j/--jacobi 2 26
-'''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.QuadResidue import legendre, jacobi

@@ -1,10 +1,20 @@
-'''
-1. python RSA.py [<bit>] -pq [<p>] [<q>] [<plaintxt>]
-2. python RSA.py [<bit>] -pqa [<p>] [<q>] [<a>] [<plaintxt>]
-3. python RSA.py [<bit>] --null [<plaintxt>]
+name = "RSA"
+help_info = '''
+[ShiCrypto] You're using CLI-RSA, the following help info might be helpful:
+            Usage.1 python RSA.py [<bit>] -pq [<p>] [<q>] [<plaintxt>]
+            eg. python RSA.py 1024 -pq 17 65537 456
 
-eg. python RSA.py 512 --null 123
+            Usage.2 python RSA.py [<bit>] -pqa [<p>] [<q>] [<a>] [<plaintxt>]
+            eg. python RSA.py 512 -pqa 17 65537 789 456456
+
+            Usage.3 python RSA.py [<bit>] --null [<plaintxt>]
+            eg. python RSA.py 512 --null 123
 '''
+
+export_info = {
+    "name": name,
+    "help": help_info
+}
 
 import sys
 from src.RSA import RSA
