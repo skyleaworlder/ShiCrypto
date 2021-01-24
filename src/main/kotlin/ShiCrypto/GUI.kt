@@ -1,5 +1,8 @@
 package ShiCrypto
 
+import jsonParser.API
+import jsonParser.APIInfo
+import jsonParser.APIJson
 import java.awt.*
 import java.awt.event.*
 import javax.swing.*
@@ -40,8 +43,27 @@ class GUI: JFrame() {
         gbcTabbedPane.gridy=0
         panel.add(tabbedPane, gbcTabbedPane)
 
-        val Crypto = JScrollPane()
-        //Crypto.addChangeListener { textArea=(Crypto.selectedComponent as JScrollPane).viewport.view as JTextArea }
-        tabbedPane.addTab("Crypto", null, Crypto, null)
+        // get json info from APIInfo
+        val apiPath: String = "D:\\Projects\\Gitexercise\\ShiCrypto\\plugin\\\\api\\\\api.json"
+        val apiInfoObj = APIInfo(apiPath)
+        val apiJson = apiInfoObj.getInfoFromAPIJson()
+        addModuleTabbedPanelFromAPIJson(tabbedPane, apiJson)
+    }
+
+    private fun addModuleTabbedPanelFromAPIJson(tabbedPane: JTabbedPane, apiJson: APIJson?) {
+        // emm !!. or ?.
+        val apiArray: List<API> = apiJson!!.api
+        for (api in apiArray) {
+            val tabbedPanelModuleTmp = JTabbedPane(JTabbedPane.TOP)
+            addFuncTabbedPanelFromAPI(tabbedPanelModuleTmp, api)
+            tabbedPane.addTab(api.name, null, tabbedPanelModuleTmp, null)
+        }
+    }
+
+    private fun addFuncTabbedPanelFromAPI(tabbedPanelModule: JTabbedPane, api: API) {
+        for (func in api.func) {
+            val tabbedPaneFuncTmp = JTabbedPane(JTabbedPane.TOP)
+            tabbedPanelModule.addTab(func.name, null, tabbedPaneFuncTmp, null)
+        }
     }
 }
