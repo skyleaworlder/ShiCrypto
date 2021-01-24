@@ -11,6 +11,7 @@ import java.awt.event.*
 import java.util.*
 import javax.swing.*
 import javax.swing.border.Border
+import kotlin.collections.ArrayList
 
 class GUI: JFrame() {
     init {
@@ -97,9 +98,9 @@ class GUI: JFrame() {
         g.gridy = 0
 
         var i: Int = 0
+        val textAreaArray: ArrayList<JTextArea> = ArrayList()
         while (i < func.column.num+1) {
             g.gridx = i
-            println(i)
             val tmpScrollPane = JScrollPane()
 
             // column param in input panel
@@ -115,13 +116,16 @@ class GUI: JFrame() {
                 }
             }
 
+            // TextArea for operator
             val tmpTextArea = JTextArea(tmpTextContent)
             tmpTextArea.lineWrap = true
             tmpTextArea.rows = 18
             tmpTextArea.font = Font("黑体", Font.PLAIN, 20)
 
             tmpScrollPane.setViewportView(tmpTextArea)
+            textAreaArray.add(tmpTextArea)
             tabbedPanelFunc.add(tmpScrollPane, g)
+
             i += 1
         }
 
@@ -137,6 +141,13 @@ class GUI: JFrame() {
         // Execute button
         val execButton = JButton("Execute!")
         execButton.addActionListener {
+
+            // get text from column TextArea
+            val columnText: ArrayList<String> = ArrayList()
+            textAreaArray.forEach {
+                columnText.add(it.text)
+            }
+
             val props = Properties()
             props["python.home"] = "D:\\python\\Python27\\python.exe"
             props["python.console.encoding"] = "UTF-8"
@@ -144,14 +155,16 @@ class GUI: JFrame() {
 
             val preprops = System.getProperties()
 
+            /*
             TODO("arrayOf 的处理，需要根据当前输入进行处理，之后生成一个 arrayOf String")
             PythonInterpreter.initialize(preprops, props, arrayOf("padding"))
             val interpreter = PythonInterpreter()
             val sys = Py.getSystemState()
-
             try {
-                interpreter.execfile(scsriptPath)
+                interpreter.execfile(scriptPath)
             }
+            */
+
         }
         val gbcExecButton = GridBagConstraints()
         gbcExecButton.fill = GridBagConstraints.BOTH
@@ -160,5 +173,9 @@ class GUI: JFrame() {
         gbcExecButton.gridy = 1
         gbcExecButton.gridwidth = 1
         tabbedPanelFunc.add(execButton, gbcExecButton)
+    }
+
+    private fun getArrayOfCLIParam(func: APIFunc) {
+
     }
 }
