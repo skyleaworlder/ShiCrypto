@@ -8,6 +8,7 @@ class JsonParserTest {
 
     @Test
     fun jsonParser() {
+        println("This is jsonParserTest")
         val json = """
         {
           "api": [
@@ -47,6 +48,13 @@ class JsonParserTest {
 
         println(parsed)
         println(parsed!!.api[0].func[0].help)
+    }
+
+    @Test
+    fun APIInfoTest() {
+        println("This is APIInfoTest")
+        val inf = APIInfo("D:\\Projects\\Gitexercise\\ShiCrypto\\plugin\\\\api\\\\api.json")
+        println(inf.getInfoFromAPIJson())
     }
 
 }
