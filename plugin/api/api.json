@@ -21,6 +21,45 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Calcu",
+      "id": "5615e1c05710b0c29b9fa31eab467f1b5b969c48",
+      "path": "./src/Calcu.py",
+      "func": [
+        {
+          "name": "add",
+          "id": "97c50a546292e6a36ec29c5fc170b5dc9920e994",
+          "help": "Usage: python Calcu.py [<choice>] [<op1>] [<op2>] [<modulo>]",
+          "column": {
+            "num": 1,
+            "input": [
+              { "name": "op1", "inf": false },
+              { "name": "op2", "inf": false },
+              { "name": "modulo", "inf": true }
+            ]
+          },
+          "param": [
+            { "option": ["--add", "-a"], "pos": 0 }
+          ]
+        },
+        {
+          "name": "sub",
+          "id": "2874a95a35e4313ed9efff25e0f66b37b17c9500",
+          "help": "Usage: python Calcu.py [<choice>] [<op1>] [<op2>] [<modulo>]",
+          "column": {
+            "num": 1,
+            "input": [
+              { "name": "op1", "inf": false },
+              { "name": "op2", "inf": false },
+              { "name": "modulo", "inf": true }
+            ]
+          },
+          "param": [
+            { "option": ["--sub", "-s"], "pos": 0 }
+          ]
+        }
+      ]
     }
   ]
 }
