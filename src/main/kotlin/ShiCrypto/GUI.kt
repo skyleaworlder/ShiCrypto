@@ -79,9 +79,10 @@ class GUI: JFrame() {
     }
 
     private fun addWindowsFromAPI(tabbedPanelFunc: JPanel, func: APIFunc) {
+        // set layout of input func-tabbed-panel
         tabbedPanelFunc.layout = GridBagLayout()
 
-        var i: Int = 0
+        // set gbc of func-tabbed-panel
         val g = GridBagConstraints()
         g.weightx = 0.5
         g.ipadx = 0
@@ -91,13 +92,30 @@ class GUI: JFrame() {
         g.gridx = 0
         g.gridy = 0
 
+        var i: Int = 0
         while (i < func.column.num+1) {
             g.gridx = i
             println(i)
             val tmpScrollPane = JScrollPane()
-            val tmpTextArea = JTextArea()
+
+            // column param in input panel
+            var tmpTextContent: String = ""
+            // column param is infinite list
+            if (i < func.column.num && func.column.input[i].inf) {
+                for (j in 0..2 step 1) {
+                    tmpTextContent += (func.column.input[i].name + j.toString() + " = \n")
+                }
+            } else if (i < func.column.num) {
+                for (input in func.column.input) {
+                    tmpTextContent += (input.name + " = \n")
+                }
+            }
+
+            val tmpTextArea = JTextArea(tmpTextContent)
             tmpTextArea.lineWrap = true
-            tmpTextArea.rows = 27
+            tmpTextArea.rows = 18
+            tmpTextArea.font = Font("黑体", Font.PLAIN, 20)
+
             tmpScrollPane.setViewportView(tmpTextArea)
             tabbedPanelFunc.add(tmpScrollPane, g)
             i += 1
