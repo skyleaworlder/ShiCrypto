@@ -4,8 +4,11 @@ import jsonParser.API
 import jsonParser.APIFunc
 import jsonParser.APIInfo
 import jsonParser.APIJson
+import org.python.core.Py
+import org.python.util.PythonInterpreter
 import java.awt.*
 import java.awt.event.*
+import java.util.*
 import javax.swing.*
 import javax.swing.border.Border
 
@@ -47,7 +50,8 @@ class GUI: JFrame() {
         panel.add(tabbedPane, gbcTabbedPane)
 
         // get json info from APIInfo
-        val apiPath: String = "D:\\Projects\\Gitexercise\\ShiCrypto\\plugin\\\\api\\\\api.json"
+        println(System.getProperty("user.dir"))
+        val apiPath: String = System.getProperty("user.dir") + "/src/api.json"
         val apiInfoObj = APIInfo(apiPath)
         val apiJson = apiInfoObj.getInfoFromAPIJson()
         addModuleTabbedPanelFromAPIJson(tabbedPane, apiJson)
@@ -73,12 +77,12 @@ class GUI: JFrame() {
             val tabbedPaneFuncTmp = JPanel()
             tabbedPanelModule.add(tabbedPaneFuncTmp, gbcTabbedPaneFunc)
 
-            addWindowsFromAPI(tabbedPaneFuncTmp, func)
+            addWindowsFromAPI(tabbedPaneFuncTmp, func, api.path)
             tabbedPanelModule.addTab(func.name, null, tabbedPaneFuncTmp, null)
         }
     }
 
-    private fun addWindowsFromAPI(tabbedPanelFunc: JPanel, func: APIFunc) {
+    private fun addWindowsFromAPI(tabbedPanelFunc: JPanel, func: APIFunc, scriptPath: String) {
         // set layout of input func-tabbed-panel
         tabbedPanelFunc.layout = GridBagLayout()
 
@@ -127,7 +131,34 @@ class GUI: JFrame() {
         gbcHelpTextField.ipady = 50
         gbcHelpTextField.gridx = 0
         gbcHelpTextField.gridy = 1
-        gbcHelpTextField.gridwidth = 0
+        gbcHelpTextField.gridwidth = func.column.num
         tabbedPanelFunc.add(helpTextField, gbcHelpTextField)
+
+        // Execute button
+        val execButton = JButton("Execute!")
+        execButton.addActionListener {
+            val props = Properties()
+            props["python.home"] = "D:\\python\\Python27\\python.exe"
+            props["python.console.encoding"] = "UTF-8"
+            props["python.import.site"] = "false"
+
+            val preprops = System.getProperties()
+
+            TODO("arrayOf 的处理，需要根据当前输入进行处理，之后生成一个 arrayOf String")
+            PythonInterpreter.initialize(preprops, props, arrayOf("padding"))
+            val interpreter = PythonInterpreter()
+            val sys = Py.getSystemState()
+
+            try {
+                interpreter.execfile(scsriptPath)
+            }
+        }
+        val gbcExecButton = GridBagConstraints()
+        gbcExecButton.fill = GridBagConstraints.BOTH
+        gbcExecButton.ipadx = 50
+        gbcExecButton.gridx = func.column.num
+        gbcExecButton.gridy = 1
+        gbcExecButton.gridwidth = 1
+        tabbedPanelFunc.add(execButton, gbcExecButton)
     }
 }
