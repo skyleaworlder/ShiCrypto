@@ -3,7 +3,7 @@
     {
       "name": "CRT",
       "id": "50712f7ea0e9a5641483f7a60c06c11712404f8a",
-      "path": "./src/CRT.py",
+      "path": "../plugin/api/src/CRT.py",
       "func": [
         {
           "name": "CRT",
@@ -25,7 +25,7 @@
     {
       "name": "Calcu",
       "id": "5615e1c05710b0c29b9fa31eab467f1b5b969c48",
-      "path": "./src/Calcu.py",
+      "path": "../plugin/api/src/Calcu.py",
       "func": [
         {
           "name": "add",
