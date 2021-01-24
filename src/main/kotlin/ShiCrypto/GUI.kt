@@ -1,11 +1,13 @@
 package ShiCrypto
 
 import jsonParser.API
+import jsonParser.APIFunc
 import jsonParser.APIInfo
 import jsonParser.APIJson
 import java.awt.*
 import java.awt.event.*
 import javax.swing.*
+import javax.swing.border.Border
 
 class GUI: JFrame() {
     init {
@@ -13,9 +15,11 @@ class GUI: JFrame() {
     }
 
     private fun createGUI(titleInput: String) {
+        // total info
         title = titleInput
         isVisible = true
         defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
+        isResizable = false
         setSize(1000, 600)
         setLocationRelativeTo(null)
 
@@ -24,15 +28,14 @@ class GUI: JFrame() {
 
         // add panel of whole UI
         val panel = JPanel()
-        panel.addContainerListener(object : ContainerAdapter() {
-            override fun componentRemoved(e: ContainerEvent?) {}
-        })
         val gblPanel=GridBagLayout()
         gblPanel.columnWeights=doubleArrayOf(1.0, Double.MIN_VALUE)
         gblPanel.rowWeights=doubleArrayOf(1.0, Double.MIN_VALUE)
+
         panel.layout=gblPanel
         // contentPane add panel
-        contentPane.add(panel, BorderLayout.CENTER)
+        // PAGE_START is important
+        contentPane.add(panel, BorderLayout.PAGE_START)
 
         // tabbed pane at top of panel
         val tabbedPane = JTabbedPane(JTabbedPane.TOP)
@@ -54,7 +57,10 @@ class GUI: JFrame() {
         // emm !!. or ?.
         val apiArray: List<API> = apiJson!!.api
         for (api in apiArray) {
+            val gbcTabbedPaneModule = GridBagConstraints()
             val tabbedPanelModuleTmp = JTabbedPane(JTabbedPane.TOP)
+            tabbedPane.add(tabbedPanelModuleTmp, gbcTabbedPaneModule)
+
             addFuncTabbedPanelFromAPI(tabbedPanelModuleTmp, api)
             tabbedPane.addTab(api.name, null, tabbedPanelModuleTmp, null)
         }
@@ -62,8 +68,48 @@ class GUI: JFrame() {
 
     private fun addFuncTabbedPanelFromAPI(tabbedPanelModule: JTabbedPane, api: API) {
         for (func in api.func) {
-            val tabbedPaneFuncTmp = JTabbedPane(JTabbedPane.TOP)
+            val gbcTabbedPaneFunc = GridBagConstraints()
+            gbcTabbedPaneFunc.anchor = GridBagConstraints.NORTHWEST
+            val tabbedPaneFuncTmp = JPanel()
+            tabbedPanelModule.add(tabbedPaneFuncTmp, gbcTabbedPaneFunc)
+
+            addWindowsFromAPI(tabbedPaneFuncTmp, func)
             tabbedPanelModule.addTab(func.name, null, tabbedPaneFuncTmp, null)
         }
+    }
+
+    private fun addWindowsFromAPI(tabbedPanelFunc: JPanel, func: APIFunc) {
+        tabbedPanelFunc.layout = GridBagLayout()
+
+        var i: Int = 0
+        val g = GridBagConstraints()
+        g.weightx = 0.5
+        g.ipadx = 0
+        g.fill = GridBagConstraints.BOTH
+        g.anchor = GridBagConstraints.NORTHWEST
+        g.insets = Insets(0,0,0,0)
+        g.gridx = 0
+        g.gridy = 0
+
+        while (i < func.column.num+1) {
+            g.gridx = i
+            println(i)
+            val tmpScrollPane = JScrollPane()
+            val tmpTextArea = JTextArea()
+            tmpTextArea.lineWrap = true
+            tmpTextArea.rows = 27
+            tmpScrollPane.setViewportView(tmpTextArea)
+            tabbedPanelFunc.add(tmpScrollPane, g)
+            i += 1
+        }
+
+        val helpTextField = JTextField(func.help)
+        val gbcHelpTextField = GridBagConstraints()
+        gbcHelpTextField.fill = GridBagConstraints.BOTH
+        gbcHelpTextField.ipady = 50
+        gbcHelpTextField.gridx = 0
+        gbcHelpTextField.gridy = 1
+        gbcHelpTextField.gridwidth = 0
+        tabbedPanelFunc.add(helpTextField, gbcHelpTextField)
     }
 }
