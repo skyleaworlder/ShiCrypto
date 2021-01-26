@@ -73,7 +73,7 @@ class Test(unittest.TestCase):
             Pohlig_Hellman.main(data)
 
     Pollard_Rho_Log_data = [
-        ("2", "5", "98"),
+        #("2", "5", "98"),
         ("3", "12", "5"),
         ("11", "980", "12546"),
     ]
