@@ -1,5 +1,7 @@
 # 现代密码学 / 信息安全数学基础 辅助小工具
 
+[![Build Status](https://travis-ci.org/skyleaworlder/ShiCrypto.svg?branch=restruct)](https://travis-ci.org/skyleaworlder/ShiCrypto)
+
 ![CLI](README.assets/CLI.png)
 ## 前言
 
