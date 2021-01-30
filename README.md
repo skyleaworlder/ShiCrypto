@@ -1,6 +1,7 @@
 # 现代密码学 / 信息安全数学基础 辅助小工具
 
 [![Build Status](https://travis-ci.org/skyleaworlder/ShiCrypto.svg?branch=restruct)](https://travis-ci.org/skyleaworlder/ShiCrypto)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fskyleaworlder%2FShiCrypto.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fskyleaworlder%2FShiCrypto?ref=badge_shield)
 
 ![CLI](README.assets/CLI.png)
 ## 前言
@@ -111,3 +112,7 @@ python ./plugin/api/Calcu.py --add 4 5 9
 ## 结尾
 
 总之，还是自娱自乐的东西吧。
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fskyleaworlder%2FShiCrypto.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fskyleaworlder%2FShiCrypto?ref=badge_large)
